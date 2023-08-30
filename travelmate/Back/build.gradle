@@ -22,13 +22,22 @@ repositories {
 }
 
 dependencies {
+	//DAO : JPA 사용
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	//검증 : validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//@Data @Slf4j @Getter @Setter
 	compileOnly 'org.projectlombok:lombok'
+	// mysql
 	runtimeOnly 'com.mysql:mysql-connector-j'
+	// lombok
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// test 환경에서 lombok 실행
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {
