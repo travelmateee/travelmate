@@ -5,6 +5,11 @@ import team.travelmate.file.UploadFile;
 
 import java.io.Serializable;
 
+/**
+ * @author yeongwoonshin
+ * @version v0.0
+ * UploadFilesId
+ */
 public class UploadFilesId implements Serializable {
 
     private Recruitment recruitment;
