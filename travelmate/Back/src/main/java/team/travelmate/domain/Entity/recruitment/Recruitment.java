@@ -6,7 +6,7 @@ import team.travelmate.file.UploadFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -41,15 +41,15 @@ public class Recruitment {
 
     //여행 출발일
     @Column(nullable = false)
-    private Date startDate;
+    private LocalDate startDate;
 
     //여행 종료일
     @Column(nullable = false)
-    private Date dueDate;
+    private LocalDate dueDate;
 
     //모집글 작성일
     @Column(nullable = false)
-    private Date writeDate;
+    private LocalDate writeDate;
 
     //여행 장소
     @Column(nullable = false)
@@ -64,4 +64,17 @@ public class Recruitment {
     @OneToMany(mappedBy = "fid")
     private List<UploadFile> uploadImgs;
 
+    public Recruitment() {
+    }
+
+    public Recruitment(User user, String title, String body, LocalDate startDate, LocalDate dueDate, LocalDate writeDate, String place, Long budge) {
+        this.user = user;
+        this.title = title;
+        this.body = body;
+        this.startDate = startDate;
+        this.dueDate = dueDate;
+        this.writeDate = writeDate;
+        this.place = place;
+        this.budge = budge;
+    }
 }

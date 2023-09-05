@@ -1,6 +1,8 @@
 package team.travelmate.common;
 
 import lombok.Data;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -31,16 +33,16 @@ public class SearchCondition {
 
     private Long Budge;
 
-    private Date StartDate;
+    private LocalDate StartDate;
 
-    private Date DueDate;
+    private LocalDate DueDate;
 
     private Long UID;
 
     public SearchCondition() {
     }
 
-    public SearchCondition(String title, String place, Long budge, Date startDate, Date dueDate, Long UID) {
+    public SearchCondition(String title, String place, Long budge, LocalDate startDate, LocalDate dueDate, Long UID) {
         this.title = title;
         this.place = place;
         Budge = budge;
