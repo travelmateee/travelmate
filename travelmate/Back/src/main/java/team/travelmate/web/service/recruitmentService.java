@@ -17,6 +17,4 @@ public interface recruitmentService {
 
     List<Recruitment> findRecuitents(SearchCondition con);
 
-
-
 }

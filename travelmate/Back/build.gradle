@@ -54,3 +54,13 @@ tasks.named('test') {
 clean{
 	delete file('src/main/generated')
 }
+
+def querydslSrcDir = 'src/main/generated'
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main/java', querydslSrcDir]
+		}
+	}
+}
