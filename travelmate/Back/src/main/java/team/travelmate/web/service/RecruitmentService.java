@@ -3,6 +3,8 @@ package team.travelmate.web.service;
 import org.springframework.data.domain.Pageable;
 import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
+import team.travelmate.domain.Entity.user.User;
+import team.travelmate.web.form.RecruitmentAddForm;
 import team.travelmate.web.returnjson.DeleteResult;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public interface RecruitmentService {
      * @param recruitment recruitment
      * @return 저장된 recruitment
      */
-    Recruitment saveRecruitment(Recruitment recruitment);
+    Recruitment saveRecruitment(RecruitmentAddForm recruitment, Long userId);
 
     /**
      * 모집글 수정하기

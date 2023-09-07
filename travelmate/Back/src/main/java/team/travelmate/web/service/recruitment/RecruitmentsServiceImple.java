@@ -6,10 +6,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
+import team.travelmate.domain.Entity.user.User;
 import team.travelmate.domain.repository.RecruitmentRepository;
+import team.travelmate.domain.repository.UserRepository;
+import team.travelmate.web.form.RecruitmentAddForm;
 import team.travelmate.web.returnjson.DeleteResult;
 import team.travelmate.web.service.RecruitmentService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +23,16 @@ import java.util.Optional;
 public class RecruitmentsServiceImple implements RecruitmentService {
 
     private final RecruitmentRepository recruitmentRepository;
+    private final UserRepository userRepository;
 
     @Override
-    public Recruitment saveRecruitment(Recruitment recruitment) {
-        return null;
+    public Recruitment saveRecruitment(RecruitmentAddForm form, Long userId) {
+
+        Recruitment recruitment = formToRecruitment(form, userId);
+
+        return recruitmentRepository.save(recruitment);
     }
+
 
     @Override
     public Recruitment updateRecruitment(Long Rid, Recruitment updateParam) {
@@ -86,6 +95,23 @@ public class RecruitmentsServiceImple implements RecruitmentService {
             return false;
         }
         return true;
+    }
+
+    private Recruitment formToRecruitment(RecruitmentAddForm form, Long userId) {
+
+        Optional<User> user = userRepository.findById(userId);
+
+        Recruitment recruitment = new Recruitment();
+        recruitment.setTitle(form.getTitle());
+        recruitment.setBody(form.getBody());
+        recruitment.setBudge(form.getBudge());
+        recruitment.setStartDate(form.getStartDate());
+        recruitment.setDueDate(form.getDueDate());
+        recruitment.setWriteDate(LocalDate.now());
+        recruitment.setPlace(form.getPlace());
+        recruitment.setUploadImgs(form.getUploadImgs());
+        recruitment.setUser(user.get());
+        return recruitment;
     }
 
 }

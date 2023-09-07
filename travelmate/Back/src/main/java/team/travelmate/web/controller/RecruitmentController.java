@@ -9,9 +9,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
+import team.travelmate.domain.Entity.user.User;
+import team.travelmate.web.exception.RecruitmentErrorResult;
+import team.travelmate.web.form.RecruitmentAddForm;
 import team.travelmate.web.returnjson.DeleteResult;
 import team.travelmate.web.service.RecruitmentService;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +69,17 @@ public class RecruitmentController {
         }
 
         return target.get();
+    }
+
+    @PostMapping
+    public Object setRecruitment(@Valid @RequestBody RecruitmentAddForm form, BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            log.info("검증 오류 발생 error = {}",bindingResult);
+            return bindingResult.getAllErrors();
+        }
+
+        return recruitmentService.saveRecruitment(form,1L);
     }
 
 }
