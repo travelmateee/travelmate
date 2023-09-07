@@ -81,7 +81,7 @@ public class RecruitmentsServiceImple implements RecruitmentService {
         return recruitmentRepository.findAll(con,pageRequest);
     }
 
-    private boolean targetCheck(Long Rid){
+    public boolean targetCheck(Long Rid){
         if (findByRid(Rid).isEmpty()){
             return false;
         }

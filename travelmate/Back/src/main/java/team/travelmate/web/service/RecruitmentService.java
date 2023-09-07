@@ -53,4 +53,7 @@ public interface RecruitmentService {
      */
     List<Recruitment> findRecruitments(SearchCondition con, Integer page, Integer size);
 
+
+    boolean targetCheck(Long Rid);
+
 }

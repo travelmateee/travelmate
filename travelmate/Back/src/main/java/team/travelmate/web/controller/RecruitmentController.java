@@ -15,6 +15,7 @@ import team.travelmate.web.service.RecruitmentService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -54,6 +55,16 @@ public class RecruitmentController {
     @DeleteMapping("/{Rid}")
     public DeleteResult deleteRecruitment(@PathVariable Long Rid){
         return recruitmentService.deleteRecruitment(Rid);
+    }
+
+    @GetMapping("/{Rid}")
+    public Recruitment getRecruitment(@PathVariable Long Rid){
+        Optional<Recruitment> target = recruitmentService.findByRid(Rid);
+        if (target.isEmpty()){
+            throw new IllegalStateException("게시물이 존재하지 않습니다.");
+        }
+
+        return target.get();
     }
 
 }
