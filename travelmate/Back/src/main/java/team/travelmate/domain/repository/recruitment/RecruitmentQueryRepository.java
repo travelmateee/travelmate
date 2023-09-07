@@ -3,7 +3,6 @@ package team.travelmate.domain.repository.recruitment;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 import team.travelmate.common.SearchCondition;

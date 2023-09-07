@@ -1,5 +1,6 @@
 package team.travelmate.web.service;
 
+import org.springframework.data.domain.Pageable;
 import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
 
@@ -15,6 +16,6 @@ public interface recruitmentService {
 
     Recruitment findByRid(Long Rid);
 
-    List<Recruitment> findRecuitents(SearchCondition con);
+    List<Recruitment> findRecuitents(SearchCondition con, Pageable pageable);
 
 }
