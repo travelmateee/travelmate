@@ -67,7 +67,7 @@ public class RecruitmentQueryRepository {
 
     private BooleanExpression eqPlace(String place){
         if (StringUtils.hasText(place)){
-            return recruitment.place.eq("%" + place + "%");
+            return recruitment.place.like("%" + place + "%");
         }
         return null;
     }

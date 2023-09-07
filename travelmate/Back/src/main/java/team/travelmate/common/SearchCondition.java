@@ -2,8 +2,10 @@ package team.travelmate.common;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  *  Recruitment Search Condition
@@ -26,7 +28,6 @@ public class SearchCondition {
 
     LONG : UID
      */
-
     private String title;
 
     private String place;
