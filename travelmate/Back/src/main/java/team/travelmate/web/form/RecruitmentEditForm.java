@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-public class RecruitmentAddForm {
+public class RecruitmentEditForm {
 
     @NotNull
     @NotEmpty

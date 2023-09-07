@@ -7,6 +7,7 @@ import team.travelmate.file.UploadFile;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -41,15 +42,15 @@ public class Recruitment {
 
     //여행 출발일
     @Column(nullable = false)
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     //여행 종료일
     @Column(nullable = false)
-    private LocalDate dueDate;
+    private LocalDateTime dueDate;
 
     //모집글 작성일
     @Column(nullable = false)
-    private LocalDate writeDate;
+    private LocalDateTime writeDate;
 
     //여행 장소
     @Column(nullable = false)
@@ -67,7 +68,7 @@ public class Recruitment {
     public Recruitment() {
     }
 
-    public Recruitment(User user, String title, String body, LocalDate startDate, LocalDate dueDate, LocalDate writeDate, String place, Long budge) {
+    public Recruitment(User user, String title, String body, LocalDateTime startDate, LocalDateTime dueDate, LocalDateTime writeDate, String place, Long budge) {
         this.user = user;
         this.title = title;
         this.body = body;

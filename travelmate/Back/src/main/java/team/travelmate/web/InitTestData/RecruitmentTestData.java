@@ -9,6 +9,7 @@ import team.travelmate.domain.repository.UserRepository;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -33,9 +34,9 @@ public class RecruitmentTestData {
             recruitment.setBody("test body");
             recruitment.setBudge(200000L);
             recruitment.setPlace("test place");
-            recruitment.setStartDate(LocalDate.of(2023,9,01));
-            recruitment.setDueDate(LocalDate.of(2023,9,03));
-            recruitment.setWriteDate(LocalDate.now());
+            recruitment.setStartDate(LocalDateTime.of(2023,9,01,10,00));
+            recruitment.setDueDate(LocalDateTime.of(2023,9,03,19,00));
+            recruitment.setWriteDate(LocalDateTime.now());
             recruitment.setUser(user);
             rr.save(recruitment);
         }
@@ -46,9 +47,9 @@ public class RecruitmentTestData {
             recruitment.setBody("d body");
             recruitment.setBudge(100000L);
             recruitment.setPlace("d place");
-            recruitment.setStartDate(LocalDate.of(2023,9,10));
-            recruitment.setDueDate(LocalDate.of(2023,9,13));
-            recruitment.setWriteDate(LocalDate.now());
+            recruitment.setStartDate(LocalDateTime.of(2023,9,10,10,00));
+            recruitment.setDueDate(LocalDateTime.of(2023,9,13,19,00));
+            recruitment.setWriteDate(LocalDateTime.now());
             recruitment.setUser(user);
             rr.save(recruitment);
         }
@@ -58,9 +59,9 @@ public class RecruitmentTestData {
         recruitmentA.setBody("d");
         recruitmentA.setBudge(50000L);
         recruitmentA.setPlace("d");
-        recruitmentA.setStartDate(LocalDate.of(2023,9,10));
-        recruitmentA.setDueDate(LocalDate.of(2023,9,13));
-        recruitmentA.setWriteDate(LocalDate.now());
+        recruitmentA.setStartDate(LocalDateTime.of(2023,9,10,10,00));
+        recruitmentA.setDueDate(LocalDateTime.of(2023,9,13,19,00));
+        recruitmentA.setWriteDate(LocalDateTime.now());
         recruitmentA.setUser(userA);
         rr.save(recruitmentA);
 

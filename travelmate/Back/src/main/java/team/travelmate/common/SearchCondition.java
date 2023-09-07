@@ -6,6 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *  Recruitment Search Condition
@@ -34,16 +35,16 @@ public class SearchCondition {
 
     private Long Budge;
 
-    private LocalDate StartDate;
+    private LocalDateTime StartDate;
 
-    private LocalDate DueDate;
+    private LocalDateTime DueDate;
 
     private Long UID;
 
     public SearchCondition() {
     }
 
-    public SearchCondition(String title, String place, Long budge, LocalDate startDate, LocalDate dueDate, Long UID) {
+    public SearchCondition(String title, String place, Long budge, LocalDateTime startDate, LocalDateTime dueDate, Long UID) {
         this.title = title;
         this.place = place;
         Budge = budge;

@@ -2,16 +2,14 @@ package team.travelmate.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
-import team.travelmate.domain.Entity.user.User;
-import team.travelmate.web.exception.RecruitmentErrorResult;
 import team.travelmate.web.form.RecruitmentAddForm;
+import team.travelmate.web.form.RecruitmentEditForm;
 import team.travelmate.web.returnjson.DeleteResult;
 import team.travelmate.web.service.RecruitmentService;
 
@@ -80,6 +78,18 @@ public class RecruitmentController {
         }
 
         return recruitmentService.saveRecruitment(form,1L);
+    }
+
+    @PatchMapping("/{Rid}")
+    public Object updateRecruitment(@PathVariable Long Rid, @RequestBody RecruitmentEditForm form , BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            log.info("검증 오류 발생 error = {}",bindingResult);
+            return bindingResult.getAllErrors();
+        }
+
+        return recruitmentService.updateRecruitment(Rid,form);
+
     }
 
 }

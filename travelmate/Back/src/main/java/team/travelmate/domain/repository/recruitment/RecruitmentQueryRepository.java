@@ -9,7 +9,7 @@ import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static team.travelmate.domain.Entity.recruitment.QRecruitment.*;
@@ -86,7 +86,7 @@ public class RecruitmentQueryRepository {
         return null;
     }
 
-    private BooleanExpression eqDate(LocalDate startDate, LocalDate dueDate){
+    private BooleanExpression eqDate(LocalDateTime startDate, LocalDateTime dueDate){
         if (startDate != null && dueDate != null){
             return recruitment.startDate.eq(startDate).and(recruitment.dueDate.eq(dueDate));
         }

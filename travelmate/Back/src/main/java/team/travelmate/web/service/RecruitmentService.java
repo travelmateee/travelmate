@@ -5,6 +5,7 @@ import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
 import team.travelmate.domain.Entity.user.User;
 import team.travelmate.web.form.RecruitmentAddForm;
+import team.travelmate.web.form.RecruitmentEditForm;
 import team.travelmate.web.returnjson.DeleteResult;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public interface RecruitmentService {
      * @param updateParam : update 할 parameter
      * @return 수정 완료 후 DB 에 적용 된 모집글
      */
-    Recruitment updateRecruitment(Long Rid, Recruitment updateParam);
+    Recruitment updateRecruitment(Long Rid, RecruitmentEditForm updateParam);
 
     /**
      * 모집글 삭제하기

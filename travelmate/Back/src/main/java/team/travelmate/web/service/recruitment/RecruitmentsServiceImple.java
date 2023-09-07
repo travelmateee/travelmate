@@ -10,10 +10,12 @@ import team.travelmate.domain.Entity.user.User;
 import team.travelmate.domain.repository.RecruitmentRepository;
 import team.travelmate.domain.repository.UserRepository;
 import team.travelmate.web.form.RecruitmentAddForm;
+import team.travelmate.web.form.RecruitmentEditForm;
 import team.travelmate.web.returnjson.DeleteResult;
 import team.travelmate.web.service.RecruitmentService;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +37,19 @@ public class RecruitmentsServiceImple implements RecruitmentService {
 
 
     @Override
-    public Recruitment updateRecruitment(Long Rid, Recruitment updateParam) {
-        return null;
+    public Recruitment updateRecruitment(Long Rid, RecruitmentEditForm updateParam) {
+
+        if (!targetCheck(Rid)){
+            throw new IllegalStateException("해당 게시물이 존재하지 않습니다.");
+        }
+
+        Recruitment target = recruitmentRepository.findByRid(Rid).get();
+
+        updateParamSetTarget(target,updateParam);
+
+        recruitmentRepository.save(target);
+
+        return target;
     }
 
     @Override
@@ -107,11 +120,22 @@ public class RecruitmentsServiceImple implements RecruitmentService {
         recruitment.setBudge(form.getBudge());
         recruitment.setStartDate(form.getStartDate());
         recruitment.setDueDate(form.getDueDate());
-        recruitment.setWriteDate(LocalDate.now());
+        recruitment.setWriteDate(LocalDateTime.now());
         recruitment.setPlace(form.getPlace());
         recruitment.setUploadImgs(form.getUploadImgs());
         recruitment.setUser(user.get());
         return recruitment;
+    }
+
+    private void updateParamSetTarget(Recruitment target, RecruitmentEditForm updateParam) {
+        target.setTitle(updateParam.getTitle());
+        target.setBody(updateParam.getBody());
+        target.setPlace(updateParam.getPlace());
+        target.setWriteDate(LocalDateTime.now());
+        target.setBudge(updateParam.getBudge());
+        target.setStartDate(updateParam.getStartDate());
+        target.setDueDate(updateParam.getDueDate());
+        target.setUploadImgs(updateParam.getUploadImgs());
     }
 
 }

@@ -26,13 +26,13 @@ public class QRecruitment extends EntityPathBase<Recruitment> {
 
     public final NumberPath<Long> budge = createNumber("budge", Long.class);
 
-    public final DatePath<java.time.LocalDate> dueDate = createDate("dueDate", java.time.LocalDate.class);
+    public final DateTimePath<java.time.LocalDateTime> dueDate = createDateTime("dueDate", java.time.LocalDateTime.class);
 
     public final StringPath place = createString("place");
 
     public final NumberPath<Long> rid = createNumber("rid", Long.class);
 
-    public final DatePath<java.time.LocalDate> startDate = createDate("startDate", java.time.LocalDate.class);
+    public final DateTimePath<java.time.LocalDateTime> startDate = createDateTime("startDate", java.time.LocalDateTime.class);
 
     public final StringPath title = createString("title");
 
@@ -40,7 +40,7 @@ public class QRecruitment extends EntityPathBase<Recruitment> {
 
     public final team.travelmate.domain.Entity.user.QUser user;
 
-    public final DatePath<java.time.LocalDate> writeDate = createDate("writeDate", java.time.LocalDate.class);
+    public final DateTimePath<java.time.LocalDateTime> writeDate = createDateTime("writeDate", java.time.LocalDateTime.class);
 
     public QRecruitment(String variable) {
         this(Recruitment.class, forVariable(variable), INITS);
