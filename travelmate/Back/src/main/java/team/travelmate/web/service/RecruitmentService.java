@@ -3,8 +3,10 @@ package team.travelmate.web.service;
 import org.springframework.data.domain.Pageable;
 import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
+import team.travelmate.web.returnjson.DeleteResult;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -32,22 +34,23 @@ public interface RecruitmentService {
      * 모집글 삭제하기
      * @param Rid : Rid 로 삭제 대상 모집글 찾기
      */
-    void deleteRecruitment(Long Rid);
+    DeleteResult deleteRecruitment(Long Rid);
 
     /**
      * Rid 를 이용하여 모집글 찾기 : 단일 모집글 조회
      * @param Rid
      * @return DB에서 모집글 조회 후 반환
      */
-    Recruitment findByRid(Long Rid);
+    Optional<Recruitment> findByRid(Long Rid);
 
     /**
      * 다중 모집글 조회
      * @param con 검색 조건 객체
      * @see SearchCondition
-     * @param pageable pagination and sort
-     * @return 검색조건, pagenation 에 적합한 모집글s 반환
+     * @param page page
+     * @param size pageOfSize
+     * @return 검색조건, pagination 에 적합한 모집글s 반환
      */
-    List<Recruitment> findRecruitments(SearchCondition con, Pageable pageable);
+    List<Recruitment> findRecruitments(SearchCondition con, Integer page, Integer size);
 
 }
