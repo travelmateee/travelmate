@@ -1,5 +1,7 @@
 package team.travelmate.domain.repository;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
 
@@ -46,9 +48,11 @@ public interface RecruitmentRepository {
      * Recruitment List 받아오기 Search Condition 에 따라 다르게 적용
      * Querydsl을 이용하여 동적 SQL 적용
      * @param condition 검색 조건
+     * @param pageable pagenation ex) PageRequest.of(0, 2) : 시작 Page 1 -> 0 부터 시작
+     *                 page=3&size=10&sort=firstName,ASC -> 자동으로 pageable 로 전환
      * @see SearchCondition
      * @return Recruitment List 반환
      */
-    List<Recruitment> findAll(SearchCondition condition);
+    List<Recruitment> findAll(SearchCondition condition, Pageable pageable);
 
 }

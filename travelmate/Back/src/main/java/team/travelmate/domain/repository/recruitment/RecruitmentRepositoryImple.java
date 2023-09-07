@@ -2,6 +2,9 @@ package team.travelmate.domain.repository.recruitment;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Repository;
 import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
@@ -43,8 +46,8 @@ public class RecruitmentRepositoryImple implements RecruitmentRepository {
     }
 
     @Override
-    public List<Recruitment> findAll(SearchCondition condition) {
-        return queryRepository.findAll(condition);
+    public List<Recruitment> findAll(SearchCondition condition,Pageable pageable) {
+        return queryRepository.findAll(condition,pageable);
     }
 
     private static void updateParamToRecruitment(Recruitment updateParam, Recruitment recruitment) {

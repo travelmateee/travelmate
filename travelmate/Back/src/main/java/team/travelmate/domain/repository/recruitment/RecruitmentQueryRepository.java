@@ -2,6 +2,8 @@ package team.travelmate.domain.repository.recruitment;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 import team.travelmate.common.SearchCondition;
@@ -30,14 +32,17 @@ public class RecruitmentQueryRepository {
         this.query = new JPAQueryFactory(em);
     }
 
-    public List<Recruitment> findAll(SearchCondition con){
+    public List<Recruitment> findAll(SearchCondition con,Pageable pageable){
 
         return query.select(recruitment)
                 .from(recruitment)
                 .where(likeTitle(con.getTitle()),eqPlace(con.getPlace()),loeBudge(con.getBudge()),
                         eqUid(con.getUID()),eqDate(con.getStartDate(),con.getDueDate()))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
     }
+
 
     /*
     ### RECRUITMENTS SEARCH CONDITION
@@ -88,5 +93,6 @@ public class RecruitmentQueryRepository {
         }
         return null;
     }
+
 
 }

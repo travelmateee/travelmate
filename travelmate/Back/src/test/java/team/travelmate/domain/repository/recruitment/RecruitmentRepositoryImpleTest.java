@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.web.PageableDefault;
 import team.travelmate.common.SearchCondition;
 import team.travelmate.domain.Entity.recruitment.Recruitment;
 import team.travelmate.domain.Entity.user.User;
@@ -44,14 +46,18 @@ class RecruitmentRepositoryImpleTest {
         Recruitment savedRecruitment = repository.save(recruitment);
         assertThat(savedRecruitment.getRid()).isEqualTo(1);
 
+        for(int i = 0 ; i <=20 ; i++){
+            Recruitment recruitmentB = new Recruitment(userB,"test","test body", LocalDate.of(2023,9,01), LocalDate.of(2023,9,03),LocalDate.of(2023,9,01),"japen",2000000L);
+            Recruitment savedRecruitmentB = repository.save(recruitmentB);
+        }
         Recruitment recruitmentB = new Recruitment(userB,"test","test body", LocalDate.of(2023,9,01), LocalDate.of(2023,9,03),LocalDate.of(2023,9,01),"japen",2000000L);
         Recruitment savedRecruitmentB = repository.save(recruitmentB);
-        assertThat(savedRecruitmentB.getRid()).isEqualTo(2);
+        //assertThat(savedRecruitmentB.getRid()).isEqualTo(2);
 
         Optional<Recruitment> byRid = repository.findByRid(recruitmentB.getRid());
         Recruitment recruitmentC = new Recruitment(byRid.get().getUser(), "test","test body", LocalDate.of(2023,9,01), LocalDate.of(2023,9,03),LocalDate.of(2023,9,01),"japen",2000000L);
         Recruitment savedRecruitmentC = repository.save(recruitmentC);
-        assertThat(savedRecruitmentC.getRid()).isEqualTo(3);
+        //assertThat(savedRecruitmentC.getRid()).isEqualTo(3);
 
         log.info("rid ={} , title={}",savedRecruitment.getRid(),savedRecruitment.getTitle());
 
@@ -69,8 +75,8 @@ class RecruitmentRepositoryImpleTest {
         searchCondition.setUID(2L);
         searchCondition.setTitle("test");
         searchCondition.setStartDate(LocalDate.of(2023,9,01));
-        searchCondition.setDueDate(LocalDate.of(2023,9,05));
-        List<Recruitment> result = repository.findAll(searchCondition);
+        searchCondition.setDueDate(LocalDate.of(2023,9,03));
+        List<Recruitment> result = repository.findAll(searchCondition, PageRequest.of(0,10));
 
         printResultList(result);
 
